@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: eureka-server
+  datasource:
+    url: jdbc:mysql://localhost:3306/jsh_erp?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+        max-active: 20
+        initial-size: 5
+        max-wait: 60000
+        min-idle: 10
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        filters: stat,wall
+        validation-query: SELECT 1 FROM DUAL
+        test-on-borrow: false
+        test-on-return: false
+        test-while-idle: true
+        pool-prepared-statements: false
+        max-pool-prepared-statement-per-connection-size: 0
+        connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+        use-global-data-source-stat: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql
+#mybatis config
+mybatis:
+  mapper-locations: mapper/*.xml
+  configuration:
+    cache-enabled: true
+    map-underscore-to-camel-case: true
+
+ribbon:
+  http:
+    client:
+      enabled: true
+#port
+server:
+  port: 8077
+#eureka server config
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka
+  server:
+    enable-self-preservation: true
+    renewal-percent-threshold: 0.5
+
+

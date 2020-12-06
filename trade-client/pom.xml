@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>trade-admin</artifactId>
+    <artifactId>trade-client</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -28,5 +29,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
