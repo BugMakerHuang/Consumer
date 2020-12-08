@@ -2,7 +2,7 @@ spring:
   application:
     name: eureka-server
   datasource:
-    url: jdbc:mysql://localhost:3306/jsh_erp?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/jsh_erp?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
