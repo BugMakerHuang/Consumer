@@ -10,6 +10,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 
+/**
+ * @author hp
+ */
 @RestController
 public class UserController {
      @Resource
