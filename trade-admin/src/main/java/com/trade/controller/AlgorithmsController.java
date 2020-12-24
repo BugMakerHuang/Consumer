@@ -18,8 +18,8 @@ package com.trade.controller;
  *         2n^3+2n+2               O(n^3)                   三次函数
  *         2^n                     O(2^n)                   指数函数
  * 正所谓鱼和熊掌不可兼得，要提高时间效率就必须牺牲空间内存，要保证存储效率就必须牺牲时间效率，论需求而定
+ * 下面我先来对几个常用算法进行分析吧！
  **/
 public class AlgorithmsController {
-  //二分法查找
-
+  //二分法查找法
 }
