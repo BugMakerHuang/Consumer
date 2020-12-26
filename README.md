@@ -1,7 +1,6 @@
 # Algorithms
 
 ```java
-* AlgorithsController
 * 算法是用来做什么的？
 * 算法他是用来高效的解决我们计算机处理的数据的一种方式。
 * 首先当我们去做一次数据排查，
