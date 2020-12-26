@@ -1,4 +1,4 @@
-# Consumer
+# Algorithms
 
 ```java
 * AlgorithsController
