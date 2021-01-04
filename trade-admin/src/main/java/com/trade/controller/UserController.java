@@ -21,7 +21,15 @@ public class UserController {
      @GetMapping("/user/{id}")
      public  String getRole(@PathVariable("id") String id){
          System.out.println("接收到请求{/user/}"+id+"]");
-
+         int arrs[] = new int[]{1,2,3,4,5};
+         Integer num = getNum(arrs, 4);
+         System.out.println(num);
          return userService.getUser(id);
+     }
+
+     private Integer getNum(int arr[],int target){
+
+         Integer index = AlgorithmsController.binarySearch(arr, target);
+         return index;
      }
 }
