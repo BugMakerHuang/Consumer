@@ -55,3 +55,4 @@ eureka:
     lease-expiration-duration-in-seconds: 30
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
     status-page-url: http://${spring.cloud.client.ipAddress}:${server.port}/swagger-ui.html
+
