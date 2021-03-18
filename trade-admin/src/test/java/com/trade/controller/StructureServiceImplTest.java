@@ -7,16 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.IOException;
+
 
 public class StructureServiceImplTest {
 
 
 
     @Test
-    public void twoDimensionalArrayToSparseArray(){
+    public void twoDimensionalArrayToSparseArray() throws IOException {
         StrutureServiceImpl strutureService = new StrutureServiceImpl();
         int[][] arr = {{0 , 0 , 1 , 0 , 0},{0 , 2 , 0 , 0 , 0},{0 , 0 , 0 , 3 , 0}};
-        int[][] ints = strutureService.twoDimensionalArrayToSparseArray(arr);
+        int[][] ints = strutureService.twoDimensionalArrayToSparseArray(arr,"newGame");
 
         for (int[] anInt : ints) {
             System.out.printf("%d\t%d\t%d\t\n", anInt[0], anInt[1], anInt[2]);
@@ -27,7 +29,7 @@ public class StructureServiceImplTest {
     public void sparseArrayTotwoDimensionalArray(){
         StrutureServiceImpl strutureService = new StrutureServiceImpl();
         int[][] arr = {{3 , 5 , 3},{0 , 2 , 1},{1 , 1 , 2},{2, 3 , 3}};
-        int[][] ints = strutureService.sparseArrayTotwoDimensionalArray(arr);
+        int[][] ints = strutureService.sparseArrayTotwoDimensionalArray("newGame");
 
        for (int i = 0;i < ints.length;i++){
            for (int j = 0;j < ints[i].length;j++){
