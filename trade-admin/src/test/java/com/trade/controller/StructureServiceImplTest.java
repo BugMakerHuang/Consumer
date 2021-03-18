@@ -2,6 +2,8 @@ package com.trade.controller;
 
 import com.trade.dao.entity.ArrayQueue;
 import com.trade.service.impl.StrutureServiceImpl;
+import com.trade.utils.ApiUtils;
+import io.swagger.annotations.Api;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +54,13 @@ public class StructureServiceImplTest {
         StrutureServiceImpl strutureService = new StrutureServiceImpl();
         int[] arr = {1,3,4};
         strutureService.arrayQueueOut(3,arr);
+    }
+
+    @Test
+    public void testStatic(){
+        ClassLoader classLoader = ApiUtils.class.getClassLoader();
+        System.out.println(classLoader);
+        System.out.println(classLoader.getParent());
+        System.out.println(String.class.getClassLoader().getParent());
     }
 }
