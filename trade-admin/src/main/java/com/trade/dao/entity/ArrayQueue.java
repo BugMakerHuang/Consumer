@@ -1,8 +1,5 @@
 package com.trade.dao.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * @author Ben.ZhenYu
