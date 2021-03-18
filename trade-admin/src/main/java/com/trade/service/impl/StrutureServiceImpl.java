@@ -2,6 +2,8 @@ package com.trade.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import java.io.*;
+
 /**
  * @author Ben.ZhenYu
  */
@@ -18,7 +20,7 @@ public class StrutureServiceImpl {
      *    2.根据有效数组num就可以创建稀疏数组 soareseArr int[num+1][3]
      *    3.将二维数组的有效数据存入到稀疏数组中
      */
-     public int[][] twoDimensionalArrayToSparseArray(int[][] arr){
+     public int[][] twoDimensionalArrayToSparseArray(int[][] arr,String name) throws IOException {
          //1.先遍历二维数组,得到非0数据的个数
          int sum = 0;
          for (int[] ints : arr) {
@@ -48,9 +50,78 @@ public class StrutureServiceImpl {
                  }
              }
          }
+         if(!isStorage(soareseArr,name)){
+             return null;
+         }
 
          return soareseArr;
      }
+
+    /**
+     * 稀疏数组存入磁盘操作
+     */
+    private Boolean isStorage(int [][] sparseArray,String name) throws IOException {
+        Boolean isStorage = false;
+        FileWriter fileWriter = new FileWriter("C:\\Users\\DELL\\Desktop\\Consumer\\"+name+".data");
+        try {
+            for (int[] array:sparseArray){
+                fileWriter.write(array[0]+"\t"+array[1]+"\t"+array[2]+"\t");
+                fileWriter.write("\r\n");
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                fileWriter.close();
+                isStorage = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return isStorage;
+    }
+
+
+    /**
+     * 数组从磁盘中取出
+     */
+    private int[][] isOutOfStorage(String name){
+        int[][] sparseArray2=null;
+        boolean isNotRead=false;
+        BufferedReader bufferedReader=null;
+        try {
+            bufferedReader=new BufferedReader(new FileReader(new File("C:\\Users\\DELL\\Desktop\\Consumer\\"+name+".data")));
+            String lineStr=null;
+            int curCount=0;
+            while ((lineStr=bufferedReader.readLine())!=null){
+                String[] tempStr=lineStr.split("\t");
+                if(!isNotRead){
+                    sparseArray2=new int[Integer.parseInt(tempStr[2])+1][3];
+                    sparseArray2[curCount][0]=Integer.parseInt(tempStr[0]);
+                    sparseArray2[curCount][1]=Integer.parseInt(tempStr[1]);
+                    sparseArray2[curCount][2]=Integer.parseInt(tempStr[2]);
+                    curCount++;
+                    isNotRead=true;
+                }else {
+                    sparseArray2[curCount][0]=Integer.parseInt(tempStr[0]);
+                    sparseArray2[curCount][1]=Integer.parseInt(tempStr[1]);
+                    sparseArray2[curCount][2]=Integer.parseInt(tempStr[2]);
+                    curCount++;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sparseArray2;
+    }
 
     /**
      * 稀疏数组-》存入磁盘
@@ -58,7 +129,8 @@ public class StrutureServiceImpl {
      *    1.先读取稀疏数组的第一行,根据第一行数据,创建原始的二维数组
      *    2.在读取几行稀疏数组后的几行数据,并赋给 原始的二维数组 即可
      */
-    public int[][] sparseArrayTotwoDimensionalArray(int[][] soareseArr){
+    public int[][] sparseArrayTotwoDimensionalArray(String name){
+        int[][] soareseArr = isOutOfStorage(name);
         //1.读取稀疏数组第一行第一列,创建二维数组
         int[][] twoDimensionalArray = new int[soareseArr[0][0]][soareseArr[0][1]];
 
