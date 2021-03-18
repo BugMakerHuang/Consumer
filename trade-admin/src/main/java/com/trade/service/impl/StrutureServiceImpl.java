@@ -21,9 +21,9 @@ public class StrutureServiceImpl {
      public int[][] twoDimensionalArrayToSparseArray(int[][] arr){
          //1.先遍历二维数组,得到非0数据的个数
          int sum = 0;
-         for (int i = 0;i < arr.length; i++){
-             for(int j = 0; j < arr[i].length;j++){
-                 if(arr[i][j] != 0){
+         for (int[] ints : arr) {
+             for (int anInt : ints) {
+                 if (anInt != 0) {
                      sum++;
                  }
              }
@@ -58,4 +58,15 @@ public class StrutureServiceImpl {
      *    1.先读取稀疏数组的第一行,根据第一行数据,创建原始的二维数组
      *    2.在读取几行稀疏数组后的几行数据,并赋给 原始的二维数组 即可
      */
+    public int[][] sparseArrayTotwoDimensionalArray(int[][] soareseArr){
+        //1.读取稀疏数组第一行第一列,创建二维数组
+        int[][] twoDimensionalArray = new int[soareseArr[0][0]][soareseArr[0][1]];
+
+        //2.遍历读取稀疏数组中的arr[i][2]的值
+        for (int i = 1;i < soareseArr.length;i++){
+           twoDimensionalArray[soareseArr[i][0]][soareseArr[i][1]]  = soareseArr[i][2];
+        }
+
+        return twoDimensionalArray;
+    }
 }
