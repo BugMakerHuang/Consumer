@@ -1,5 +1,6 @@
 package com.trade.controller;
 
+import com.trade.dao.entity.ArrayQueue;
 import com.trade.service.impl.StrutureServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,4 +40,17 @@ public class StructureServiceImplTest {
        }
     }
 
+    @Test
+    public void arrayQueueIn(){
+        StrutureServiceImpl strutureService = new StrutureServiceImpl();
+        int[] arr = {1,3,4};
+        strutureService.arrayQueueUp(3,arr);
+    }
+
+    @Test
+    public void arrayQueueOut(){
+        StrutureServiceImpl strutureService = new StrutureServiceImpl();
+        int[] arr = {1,3,4};
+        strutureService.arrayQueueOut(3,arr);
+    }
 }

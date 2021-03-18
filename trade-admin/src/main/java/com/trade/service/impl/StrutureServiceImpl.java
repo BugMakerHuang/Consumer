@@ -1,5 +1,6 @@
 package com.trade.service.impl;
 
+import com.trade.dao.entity.ArrayQueue;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -141,4 +142,33 @@ public class StrutureServiceImpl {
 
         return twoDimensionalArray;
     }
+
+    /**
+     * 创建数组型队列
+     * 1.队列遵循FIFO,首先 write 出队/入队 方法
+     */
+    public void arrayQueueUp(int maxSize,int [] arr){
+        ArrayQueue arrayQueue = new ArrayQueue(maxSize);
+
+        for (int num : arr) {
+            arrayQueue.queueUp(num);
+        }
+
+        arrayQueue.showQueue();
+    }
+
+    public void arrayQueueOut(int maxSize,int[] arr){
+        ArrayQueue arrayQueue = new ArrayQueue(maxSize);
+
+        for (int num : arr) {
+            arrayQueue.queueUp(num);
+        }
+
+        for (int i:arr){
+            System.out.println(arrayQueue.queueOut());
+        }
+
+    }
+
+
 }
