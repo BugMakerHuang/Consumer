@@ -13,6 +13,8 @@ public class ApiUtils {
      * 2.双亲委派机制
      *   ① 每个类加载器对他加载过的类都有一个缓存。
      *   ② 向上委托查找，向下委托加载.
+     * 3.JDK的类加载对象
+     *    ClassLoader -> SecureClassLoader -> URLClassLoader -> ExtClassLoader,AppClassLoader
      */
     static {
         System.out.println("Hello! This is for Api trainning");
