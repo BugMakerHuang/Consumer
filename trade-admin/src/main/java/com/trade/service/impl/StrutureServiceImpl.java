@@ -1,6 +1,7 @@
 package com.trade.service.impl;
 
 import com.trade.dao.entity.ArrayQueue;
+import com.trade.dao.entity.CircleArrayQueue;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -144,6 +145,7 @@ public class StrutureServiceImpl {
     }
 
     /**
+     *
      * 创建数组型队列
      * 1.队列遵循FIFO,首先 write 出队/入队 方法
      */
@@ -168,6 +170,30 @@ public class StrutureServiceImpl {
             System.out.println(arrayQueue.queueOut());
         }
 
+    }
+
+
+    /**
+     * 调用环形队列方法
+     */
+    public void circleArrayQueue(int maxSize,int[] arr){
+        CircleArrayQueue queue = new CircleArrayQueue(maxSize);
+
+        //存入队列数组中
+        for (int num:arr){
+            queue.queueUp(num);
+        }
+        //查看数组队列
+        queue.showQueue();
+
+        //按顺序取出队列里的数
+        int size = queue.size();
+        int i = 0;
+        while (size > 0){
+            System.out.println("第"+i+1+"个队列元素已经出栈，其值为 " + queue.queueOut() + "!");
+            i++;
+            size--;
+        }
     }
 
 

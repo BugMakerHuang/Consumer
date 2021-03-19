@@ -63,4 +63,14 @@ public class StructureServiceImplTest {
         System.out.println(classLoader.getParent());
         System.out.println(String.class.getClassLoader().getParent());
     }
+
+    @Test
+    public void circleArrayQueue(){
+        StrutureServiceImpl strutureService = new StrutureServiceImpl();
+        int[] arr = {1,3,4};
+
+
+
+        strutureService.circleArrayQueue(arr.length+1,arr);
+    }
 }
