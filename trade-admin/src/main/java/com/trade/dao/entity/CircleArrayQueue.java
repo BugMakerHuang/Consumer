@@ -6,8 +6,8 @@ package com.trade.dao.entity;
  *
  *      * 使用数组模拟环形队列的思路分析
  *      *
- *      * 1.front变量的含义是做一个调整:front就指向队列的第一个元素,也就是说arr[front]就是队列的第一个元素,front 的初始值为 0;
- *      * 2.rear变量的含义做一个调整:rear指向队列的最后一个元素的后一个位置,因为希望空出一个空间作为约定,比如当 maxSize为 3 的时候有效数组个数为 2, rear 的初始值为 0;
+ *      * 1.front变量的含义是做一个调整:front就指向队列的第一个元素,也就是说 arr[front] 就是队列的第一个元素, front 的初始值为 0;
+ *      * 2.rear变量的含义做一个调整:rear指向队列的最后一个元素的后一个位置,因为 希望 空出一个空间 作为约定,比如当 maxSize为 3 的时候有效数组个数为 2, rear 的初始值为 0;
  *      * 3.当队列满时,条件是 (rear + 1)%maxSize = front 【满】;
  *      * 4.当队列为空的条件,rear == front 空;
  *      * 5.当我们这样分析，队列中有效的数据的个数 (rear + maxSize - front)%maxSize  例如: rear = 1 front = 0;
