@@ -1,8 +1,8 @@
 spring:
   application:
-    name: trade-admin
+    name: trade-client
   datasource:
-    url: jdbc:mysql://localhost:3306/admin?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/admin?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -23,6 +23,7 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
       use-global-data-source-stat: true
 
+
 pagehelper:
   helper-dialect: mysql
   reasonable: false
@@ -41,17 +42,15 @@ ribbon:
       enabled: true
 #port
 server:
-  port: 8080
+  port: 7002
 #eureka client config
 eureka:
+  instance:
+    hostname: localhost
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 10
   client:
     healthcheck:
       enabled: true
     service-url:
       defaultZone: http://localhost:8077/eureka
-  instance:
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 30
-    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
-    status-page-url: http://${spring.cloud.client.ipAddress}:${server.port}/swagger-ui.html

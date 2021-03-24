@@ -25,8 +25,56 @@ public class ApiUtils {
 
     private static String staticString = "~~~~~~~~~~ StaticString!";
 
-    public void testForFinalStaticString(){
+    private static int count = 0;
 
+    public static void recursion(int a,int b,int c){
+       long  l1 = 12;
+       short s1 = 1;
+       byte  b1 = 1;
+       String s = "1";
+       System.out.println("count="+count);
+       count++;
+       recursion(1,2,3);
     }
+
+    public static void recursion(){
+        System.out.println("count="+count);
+        count++;
+//        recursion();
+    }
+
+    public void localvarGc1() {
+        byte[] a = new byte[6*1024*1024];
+        System.gc();
+    }
+
+    public void localvarGc2() {
+        byte[] a = new byte[6*1024*1024];
+        a=null;
+        System.gc();
+    }
+
+    public void localvarGc3(){
+        {
+            byte[] a = new byte[6*1024*1024];
+        }
+        System.gc();
+    }
+
+    public void localvarGc4() {
+        {
+            byte[] a = new byte[6*1024*1024];
+        }
+        int c = 10;
+        System.gc();
+    }
+
+    public void localvarGc5() {
+        localvarGc1();
+        System.gc();
+    }
+
+
+
 
 }
