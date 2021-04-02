@@ -39,6 +39,8 @@ ribbon:
   http:
     client:
       enabled: true
+  ReadTimeout: 11000
+  ConnectTimeout: 11000
 #port
 server:
   port: 8080

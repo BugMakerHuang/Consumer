@@ -14,7 +14,6 @@ public class AccountController {
 
         @GetMapping("/users/{id}")
         public String getUser(@PathVariable("id") String id) throws InterruptedException {
-            Thread.sleep(3000);
             System.out.println("这里是提供者，请注意接收");
             return "testUser:["+"接收到请求[/users/" + id + "]" + port;
         }

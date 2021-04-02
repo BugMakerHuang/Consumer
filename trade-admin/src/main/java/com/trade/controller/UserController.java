@@ -1,5 +1,6 @@
 package com.trade.controller;
 
+import com.netflix.loadbalancer.ResponseTimeWeightedRule;
 import com.trade.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -22,7 +23,6 @@ public class UserController {
      @GetMapping("/user/{id}")
      public  String getRole(@PathVariable("id") String id){
          System.out.println("接收到请求{/user/}"+id+"]");
-
          return userService.getUser(id);
      }
 }
