@@ -72,7 +72,11 @@ public class AlgorithmsController {
         return left;
     }
 
-    //递归快排
+    /**递归快排
+     * @param startIndex 初始下标
+     * @param lastIndex  结尾下标
+     * @param arr        数组
+     */
     public void quickSort(int startIndex,int lastIndex,int[] arr){
         if(startIndex >= lastIndex){
             return;
