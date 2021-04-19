@@ -1,5 +1,6 @@
 package com.trade.controller;
 
+import com.trade.config.TreeNode;
 import com.trade.dao.entity.ArrayQueue;
 import com.trade.service.impl.StrutureServiceImpl;
 import com.trade.utils.ApiUtils;
@@ -87,6 +88,26 @@ public class StructureServiceImplTest {
         AlgorithmsController algorithmsController = new AlgorithmsController();
         int i = algorithmsController.hammingDistance(93, 73);
         System.out.println(i);
+    }
+
+    @Test
+    public void mergeTreesTest(){
+        AlgorithmsController algorithmsController = new AlgorithmsController();
+        /*************节点1****************/
+        TreeNode rootNode1 = new TreeNode(1);
+        rootNode1.left  = new TreeNode(3);
+        rootNode1.right = new TreeNode(2);
+        rootNode1.left.left = new TreeNode(5);
+        /************节点2****************/
+        TreeNode rootNode2 = new TreeNode(2);
+        rootNode2.left  = new TreeNode(1);
+        rootNode2.right = new TreeNode(3);
+        rootNode2.left.right = new TreeNode(4);
+        rootNode2.right.right = new TreeNode(7);
+        /************合并二叉树*************/
+        TreeNode treeNode = algorithmsController.mergeTrees(rootNode1, rootNode2);
+
+        System.out.println(treeNode);
     }
 
 }
