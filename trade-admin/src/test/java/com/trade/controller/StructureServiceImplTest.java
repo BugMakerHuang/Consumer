@@ -82,4 +82,11 @@ public class StructureServiceImplTest {
         System.out.println(Arrays.toString(arr));
     }
 
+    @Test
+    public void hammingDistanceTest(){
+        AlgorithmsController algorithmsController = new AlgorithmsController();
+        int i = algorithmsController.hammingDistance(93, 73);
+        System.out.println(i);
+    }
+
 }
