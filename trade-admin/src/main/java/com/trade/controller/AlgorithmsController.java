@@ -1,5 +1,6 @@
 package com.trade.controller;
 
+import com.trade.config.TreeNode;
 import io.swagger.models.auth.In;
 
 import java.sql.Timestamp;
@@ -108,6 +109,24 @@ public class AlgorithmsController {
           int distance = Integer.bitCount(x^y);
           return distance;
      }
+    /**
+     * 给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。
+     * 你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。
+     */
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+         //如果root1的val节点为null,则返回root2的val
+         if(root1 == null){
+             return root2;
+         }
+         //反之则返回root1的val
+         if(root2 == null){
+             return root1;
+         }
+         //确立新的根节点,并且根节点分布移动至左右节点
+         TreeNode merged = new TreeNode(root1.val + root2.val);
+         merged.left     = mergeTrees(root1.left,root2.left);
+         merged.right    = mergeTrees(root1.right,root2.right);
 
-
+         return merged;
+    }
 }
