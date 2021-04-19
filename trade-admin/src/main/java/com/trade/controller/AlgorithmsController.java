@@ -44,4 +44,41 @@ public class AlgorithmsController {
         return -1;
 
     }
+
+    private  int pivotIndex(int startIndex,int lastIndex,int[] arr){
+        //选举基准值，默认为数组的第一个索引下标
+        int pivot = arr[startIndex];
+        int left  = startIndex;
+        int right = lastIndex;
+
+        //开始循环
+        while (left != right){
+            //数组开始查询，先从后往前查，arr[right] >= pivot 的时候 指针right向左移动一位， arr[right] < pivot的时候,right指针保持不动,切换到left指针
+            while (left < right && arr[right]>= pivot){
+                right--;
+            }
+            //当arr[right] < pivot的时候,切换到left指针,当left指针的值小于pivot的时候，left指针向右移动一位,反之则left和right的值进行交换
+            while (left < right && arr[left] <= pivot){
+                left++;
+            }
+            if(left < right){
+                int temp   = arr[left];
+                arr[left]  = arr[right];
+                arr[right] = temp;
+            }
+        }
+        arr[startIndex] = arr[left];
+        arr[left] = pivot;
+        return left;
+    }
+
+    public void quickSort(int startIndex,int lastIndex,int[] arr){
+        if(startIndex >= lastIndex){
+            return;
+        }
+
+        int pivotIndex = pivotIndex(startIndex, lastIndex, arr);
+        quickSort(startIndex,pivotIndex-1,arr);
+        quickSort(pivotIndex+1,lastIndex,arr);
+    }
 }

@@ -16,8 +16,6 @@ import java.util.Arrays;
 
 public class StructureServiceImplTest {
 
-
-
     @Test
     public void twoDimensionalArrayToSparseArray() throws IOException {
         StrutureServiceImpl strutureService = new StrutureServiceImpl();
@@ -75,48 +73,13 @@ public class StructureServiceImplTest {
         strutureService.circleArrayQueue(arr.length+1,arr);
     }
 
-
     //快速排序
-    public void quickSort(int[] arr,int low,int high){
-        if(low >= high){
-            return;
-        }
-
-        int pivotIndex = partition(low,high,arr);
-
-        quickSort(arr,low,pivotIndex-1);
-        quickSort(arr,pivotIndex+1,high);
-    }
-    //定义基准点
-    public int partition(int low,int high,int[] arr){
-        int pivot = arr[low];
-        int left  = low;
-        int right = high;
-
-        //当左右两个节点不相等
-        while (left !=right){
-            while (left < right && arr[right] >= pivot){
-                right--;
-            }
-
-            while (left < right && arr[left] <= pivot){
-                left++;
-            }
-            if(left < right){
-                int temp = arr[right];
-                arr[right] = arr[left];
-                arr[left]  = temp;
-            }
-        }
-        arr[low] = arr[left];
-        arr[left] = pivot;
-        return left;
-    }
-
     @Test
     public void testQuickSort(){
         int[] arr = new int[]{4, 7, 6, 5, 3, 2, 8, 1};
-        quickSort(arr, 0, arr.length - 1);
+        AlgorithmsController algorithmsController = new AlgorithmsController();
+        algorithmsController.quickSort(0,arr.length-1,arr);
         System.out.println(Arrays.toString(arr));
     }
+
 }
