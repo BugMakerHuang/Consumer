@@ -129,4 +129,36 @@ public class AlgorithmsController {
 
          return merged;
     }
+
+    /**
+     * 翻转二叉树
+     *
+     * 输入：
+     *
+     *      4
+     *    /   \
+     *   2     7
+     *  / \   / \
+     * 1   3 6   9
+     * 输出：
+     *
+     *      4
+     *    /   \
+     *   7     2
+     *  / \   / \
+     * 9   6 3   1
+     *
+     */
+    public TreeNode invertTree(TreeNode root) {
+        //设置临时变量
+        TreeNode newNode = new TreeNode(root.val);
+
+        if(root.left.val != root.right.val){
+            newNode.right = invertTree(root.left);
+            newNode.left  = invertTree(root.right);
+        }
+
+
+        return newNode;
+    }
 }

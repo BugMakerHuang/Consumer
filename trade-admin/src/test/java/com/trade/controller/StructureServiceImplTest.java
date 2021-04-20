@@ -1,7 +1,10 @@
 package com.trade.controller;
 
 import com.trade.config.TreeNode;
+import com.trade.dao.entity.Agent;
 import com.trade.dao.entity.ArrayQueue;
+import com.trade.dao.entity.Person;
+import com.trade.dao.entity.UserEntity;
 import com.trade.service.impl.StrutureServiceImpl;
 import com.trade.utils.ApiUtils;
 import io.swagger.annotations.Api;
@@ -12,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 
@@ -108,6 +112,64 @@ public class StructureServiceImplTest {
         TreeNode treeNode = algorithmsController.mergeTrees(rootNode1, rootNode2);
 
         System.out.println(treeNode);
+    }
+
+    @Test
+    public void invertTreeTest(){
+        AlgorithmsController algorithmsController = new AlgorithmsController();
+        /*************节点1****************/
+        TreeNode rootNode1 = new TreeNode(4);
+        rootNode1.left  = new TreeNode(2);
+        rootNode1.right = new TreeNode(7);
+        rootNode1.left.left = new TreeNode(1);
+        rootNode1.left.right = new TreeNode(3);
+        rootNode1.right.left = new TreeNode(6);
+        rootNode1.right.right = new TreeNode(9);
+        /************合并二叉树*************/
+        TreeNode treeNode = algorithmsController.invertTree(rootNode1);
+
+        System.out.println(treeNode);
+    }
+
+
+    //浅拷贝
+    @Test
+    public void cloneTest() throws CloneNotSupportedException {
+        //新建一个对象
+        UserEntity userEntity = new UserEntity(1,"震宇","24289", new Timestamp(System.currentTimeMillis()));
+        userEntity.setAgent("广东省","深圳市");
+
+        UserEntity clone = userEntity.clone();
+
+        int hashCode1 = userEntity.getUsername().hashCode();
+        int hashCode = clone.getUsername().hashCode();
+
+
+        clone.setAgent("广东省","广州市");
+        System.out.println(clone);
+        System.out.println(userEntity);
+        System.out.println(hashCode == hashCode1);
+    }
+
+    //深拷贝
+    @Test
+    public void testShallowClone() throws Exception{
+        Person p1 = new Person("zhangsan",21);
+        p1.setAddress("湖北省", "武汉市");
+        Person p2 = (Person) p1.clone();
+        System.out.println("p1:"+p1);
+        System.out.println("p1.getPname:"+p1.getPname().hashCode());
+
+        System.out.println("p2:"+p2);
+        System.out.println("p2.getPname:"+p2.getPname().hashCode());
+
+        p1.display("p1");
+        p2.display("p2");
+        p2.setAddress("湖北省", "荆州市");
+        p2.setPname("23");
+        System.out.println("将复制之后的对象地址修改：");
+        p1.display("p1");
+        p2.display("p2");
     }
 
 }
